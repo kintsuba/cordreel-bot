@@ -179,6 +179,18 @@ export default class MisskeyUtils {
       poll: poll
     });
   };
+  message = (text: string, userId: string): Promise<Record<string, any>> => {
+    const messageJson = JSON.stringify({
+      userId: userId,
+      text: text,
+      i: this.token
+    });
+    return this.fetchJson(
+      "https://misskey.m544.net/api/messaging/messages/create",
+      messageJson,
+      "include"
+    );
+  };
 
   follow = (userId: string): Promise<Record<string, any>> => {
     const followJson = JSON.stringify({
