@@ -21,21 +21,21 @@ let isRunOnceFunction: boolean;
 
 const replyUser = (data: any, misskeyUtils: MisskeyUtils): void => {
   if (/かわいい|可愛い|カワイイ/.test(data.body.body.text)) {
-    misskeyUtils.message("えへへ……ありがとう！", data.body.body.id);
+    misskeyUtils.replyHome("えへへ……ありがとう！", data.body.body.id);
   } else if (/ありがと/.test(data.body.body.text)) {
-    misskeyUtils.message("どういたしまして！", data.body.body.id);
+    misskeyUtils.replyHome("どういたしまして！", data.body.body.id);
   } else if (/偉い|えらい/.test(data.body.body.text)) {
-    misskeyUtils.message("えへへ……", data.body.body.id);
+    misskeyUtils.replyHome("えへへ……", data.body.body.id);
   } else if (/コードリール/.test(data.body.body.text)) {
-    misskeyUtils.message("はーい！", data.body.body.id);
+    misskeyUtils.replyHome("はーい！", data.body.body.id);
   } else if (/おはよ/.test(data.body.body.text)) {
-    misskeyUtils.message("おはよ！今日も1日頑張ろうね！", data.body.body.id);
+    misskeyUtils.replyHome("おはよ！今日も1日頑張ろうね！", data.body.body.id);
   } else if (/こんにち(は|わ)/.test(data.body.body.text)) {
-    misskeyUtils.message("こんにちは！", data.body.body.id);
+    misskeyUtils.replyHome("こんにちは！", data.body.body.id);
   } else if (/こんばん(は|わ)/.test(data.body.body.text)) {
-    misskeyUtils.message("こんばんは！", data.body.body.id);
+    misskeyUtils.replyHome("こんばんは！", data.body.body.id);
   } else if (/おやす/.test(data.body.body.text)) {
-    misskeyUtils.message("おやすみなさい！", data.body.body.id);
+    misskeyUtils.replyHome("おやすみなさい！", data.body.body.id);
   } else if (/天気/.test(data.body.body.text)) {
     const weatherMap = weather.localeMap;
 
@@ -58,7 +58,7 @@ const replyUser = (data: any, misskeyUtils: MisskeyUtils): void => {
     }
 
     if (!doNote) {
-      misskeyUtils.message(
+      misskeyUtils.replyHome(
         "地名を併せて教えてね！\n今対応しているのは「" +
           [...weatherMap.keys()].join("、") +
           "」だよ！",
@@ -68,7 +68,7 @@ const replyUser = (data: any, misskeyUtils: MisskeyUtils): void => {
   } else if (/ブラックジャック|BJ|bj/.test(data.body.body.text)) {
     blackjacks.push(new Blackjack(data.body.body.id, misskeyUtils));
   } else {
-    misskeyUtils.message("なーにー？", data.body.body.id);
+    misskeyUtils.replyHome("なーにー？", data.body.body.id);
   }
 };
 
