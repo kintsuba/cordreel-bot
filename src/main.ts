@@ -152,10 +152,7 @@ client.on("connect", connection => {
 
   connection.on("error", error => {
     console.log("Connection Error: " + error.toString());
-    setTimeout(
-      () => client.connect("wss://misskey.m544.net/streaming?i=" + token),
-      6000
-    );
+    connection.close();
   });
   connection.on("close", () => {
     console.log("WebSocket Client Closed");
