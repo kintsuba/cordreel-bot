@@ -43,6 +43,24 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
     }
   });
 
+  client.on("presenceUpdate", (oldPresence, newPresence) => {
+    const userName = newPresence.user.username;
+    if (newPresence.presence.game !== null) {
+      const gameName = newPresence.presence.game.name;
+      if (
+        oldPresence.presence.game === null ||
+        gameName != oldPresence.presence.game.name
+      )
+        misskeyUtils.noteHome(`${userName}さんが、${gameName}を始めたよ！`);
+    } else {
+      if (oldPresence.presence.game !== null) {
+        misskeyUtils.noteHome(
+          `${userName}さんが、${oldPresence.presence.game}を終了したよ`
+        );
+      }
+    }
+  });
+
   client.login(process.env.DISCORD_TOKEN);
 };
 
