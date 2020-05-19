@@ -186,10 +186,7 @@ client.on("connect", connection => {
           blackjacks.push(new Blackjack(blackjacks[i].id, misskeyUtils));
         }
       }
-    } else if (data.body.id === "forglobaltl") {
-      console.log(data.body.body.text + moment().format("LLLL"));
     }
-    console.log(data);
   });
 
   connection.sendUTF(MisskeyUtils.connectMainJson);
