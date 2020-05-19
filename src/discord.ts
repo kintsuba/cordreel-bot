@@ -1,4 +1,4 @@
-import { Client, VoiceChannel } from "discord.js";
+import { Client, VoiceChannel, TextChannel } from "discord.js";
 import * as dotenv from "dotenv";
 import MisskeyUtils from "./misskey-utils";
 
@@ -44,6 +44,10 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
   });
 
   client.on("presenceUpdate", (oldPresence, newPresence) => {
+    const notificationChannel = newPresence.guild.channels.find(
+      ch => ch.name === "notification"
+    ) as TextChannel;
+
     const userName = newPresence.user.username;
     if (newPresence.presence.game !== null) {
       const gameName = newPresence.presence.game.name;
@@ -51,10 +55,10 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
         oldPresence.presence.game === null ||
         gameName != oldPresence.presence.game.name
       )
-        misskeyUtils.noteHome(`${userName}さんが、${gameName}を始めたよ！`);
+        notificationChannel.send(`${userName}さんが、${gameName}を始めたよ！`);
     } else {
       if (oldPresence.presence.game !== null) {
-        misskeyUtils.noteHome(
+        notificationChannel.send(
           `${userName}さんが、${oldPresence.presence.game}を終了したよ`
         );
       }
