@@ -54,13 +54,29 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
       if (
         oldPresence.presence.game === null ||
         gameName != oldPresence.presence.game.name
-      )
-        notificationChannel.send(`${userName}さんが、${gameName}を始めたよ！`);
+      ) {
+        if (
+          gameName !== "Visual Studio Code" &&
+          gameName !== "Eclipse IDE" &&
+          gameName !== "インターネット" &&
+          gameName !== "Spotify"
+        )
+          notificationChannel.send(
+            `${userName}さんが、${gameName}を始めたよ！`
+          );
+      }
     } else {
       if (oldPresence.presence.game !== null) {
-        notificationChannel.send(
-          `${userName}さんが、${oldPresence.presence.game}を終了したよ`
-        );
+        const gameName = oldPresence.presence.game.name;
+        if (
+          gameName !== "Visual Studio Code" &&
+          gameName !== "Eclipse IDE" &&
+          gameName !== "インターネット" &&
+          gameName !== "Spotify"
+        )
+          notificationChannel.send(
+            `${userName}さんが、${gameName}を終了したよ`
+          );
       }
     }
   });
