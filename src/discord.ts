@@ -44,6 +44,16 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
   });
 
   client.on("presenceUpdate", (oldPresence, newPresence) => {
+    const excludeGames = [
+      "Visual Studio Code",
+      "Eclipse IDE",
+      "インターネット",
+      "Spotify",
+      "Custom Status",
+      "Microsoft Visual Studio",
+      "Google Chrome"
+    ];
+
     const notificationChannel = newPresence.guild.channels.find(
       ch => ch.name === "notification"
     ) as TextChannel;
@@ -55,12 +65,7 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
         oldPresence.presence.game === null ||
         gameName != oldPresence.presence.game.name
       ) {
-        if (
-          gameName !== "Visual Studio Code" &&
-          gameName !== "Eclipse IDE" &&
-          gameName !== "インターネット" &&
-          gameName !== "Spotify"
-        )
+        if (!excludeGames.includes(gameName))
           notificationChannel.send(
             `${userName}さんが、${gameName}を始めたよ！`
           );
@@ -68,12 +73,7 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
     } else {
       if (oldPresence.presence.game !== null) {
         const gameName = oldPresence.presence.game.name;
-        if (
-          gameName !== "Visual Studio Code" &&
-          gameName !== "Eclipse IDE" &&
-          gameName !== "インターネット" &&
-          gameName !== "Spotify"
-        )
+        if (!excludeGames.includes(gameName))
           notificationChannel.send(
             `${userName}さんが、${gameName}を終了したよ`
           );
