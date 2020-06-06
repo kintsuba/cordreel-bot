@@ -38,6 +38,7 @@ const replyUser = (data: any, misskeyUtils: MisskeyUtils): void => {
     misskeyUtils.replyHome("おやすみなさい！", data.body.body.id);
   } else if (/天気/.test(data.body.body.text)) {
     const weatherMap = weather.localeMap;
+    const visibility = data.body.body.visibility;
 
     let doNote = false;
     for (const [key, value] of weatherMap) {
@@ -47,7 +48,7 @@ const replyUser = (data: any, misskeyUtils: MisskeyUtils): void => {
           return misskeyUtils.note({
             cw: key + "の天気予報だよ",
             text: key + "\n" + (await weather.get(value)),
-            visibility: MisskeyUtils.Visibility.Home,
+            visibility: visibility,
             replyId: data.body.body.id
           });
         };
