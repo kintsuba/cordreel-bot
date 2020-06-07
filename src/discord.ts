@@ -51,7 +51,10 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
       "Spotify",
       "Custom Status",
       "Microsoft Visual Studio",
-      "Google Chrome"
+      "Google Chrome",
+      "Wallpaper Engine",
+      "iTunes",
+      "foobar2000 :notes:"
     ];
 
     const notificationChannel = newPresence.guild.channels.find(
