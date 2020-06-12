@@ -62,11 +62,12 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
     ) as TextChannel;
 
     const userName = newPresence.user.username;
+
     if (newPresence.presence.game !== null) {
       const gameName = newPresence.presence.game.name;
       if (
         oldPresence.presence.game === null ||
-        gameName != oldPresence.presence.game.name
+        gameName !== oldPresence.presence.game.name
       ) {
         if (!excludeGames.includes(gameName))
           notificationChannel.send(
