@@ -67,8 +67,8 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
       const gameName = newPresence.presence.game.name;
       if (
         oldPresence.presence.game === null ||
-        (gameName !== oldPresence.presence.game.name &&
-          gameName !== "有栖川夏葉")
+        gameName !== "有栖川夏葉" ||
+        gameName !== oldPresence.presence.game.name
       ) {
         if (!excludeGames.includes(gameName))
           notificationChannel.send(
