@@ -54,7 +54,8 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
       "Google Chrome",
       "Wallpaper Engine",
       "iTunes",
-      "foobar2000 :notes:"
+      "foobar2000 :notes:",
+      "有栖川夏葉"
     ];
 
     const notificationChannel = newPresence.guild.channels.find(
@@ -67,7 +68,6 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
       const gameName = newPresence.presence.game.name;
       if (
         oldPresence.presence.game === null ||
-        gameName !== "有栖川夏葉" ||
         gameName !== oldPresence.presence.game.name
       ) {
         if (!excludeGames.includes(gameName))
