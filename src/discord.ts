@@ -55,7 +55,10 @@ const discord = (misskeyUtils: MisskeyUtils): void => {
       "Wallpaper Engine",
       "iTunes",
       "foobar2000 :notes:",
-      "有栖川夏葉"
+      "有栖川夏葉",
+      "Misskey",
+      "おちんちろき",
+      "Twitch"
     ];
 
     const notificationChannel = newPresence.guild.channels.find(
